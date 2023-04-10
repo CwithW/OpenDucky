@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/ws": "^8.5.4"
+  },
+  "dependencies": {
+    "ws": "^8.13.0"
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "DeviceId":"114514",
+    "ServerWebsocketUrl":"ws://106.14.15.50:8000/device",
+    "ServerAuthKey":"OpenDucky",
+    "HidGadgetDeviceFile":"/dev/hidg0"
+}

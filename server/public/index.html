@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <textarea id="input" style="width:100%;height:50%;"></textarea>
+    </body>
+    <script>
+
+        (function() {
+            let ws = new WebSocket('ws://106.14.15.50:8001');
+            function sendKey(key){
+                ws.send(JSON.stringify({
+                    deviceId: deviceId,
+                    type:3,
+                    data: key.charCodeAt(0)
+                }));
+            }
+            let deviceId = '114514';
+            let input = document.getElementById('input');
+            input.addEventListener("keyup", function() {
+                let text = input.value;
+                sendKey(text);
+                input.value = '';
+            });
+        })();
+
+        </script>
+</html>
