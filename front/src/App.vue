@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { getDeviceId } from '@/deviceid'
 </script>
 
 <template>
   <header>
-    <div>
       <nav>
-<!--         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink> -->
-        <RouterLink class="nav-button" to="/device">DeviceControl</RouterLink>
-        <RouterLink class="nav-button" to="/about">Config</RouterLink>
+        <RouterLink class="nav-button" to="/control">Control</RouterLink>
+        <RouterLink class="nav-button" to="/script">Script</RouterLink>
+        <RouterLink class="nav-button" to="/device">Device</RouterLink>
+        <RouterLink class="nav-button" to="/config">Config</RouterLink>
       </nav>
-    </div>
+      <div>
+        Last Seen: {{ 1 }}
+      </div>
   </header>
-
   <RouterView />
 </template>
 
@@ -22,6 +22,7 @@ import HelloWorld from './components/HelloWorld.vue'
 header {
   width:100%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
 
 }

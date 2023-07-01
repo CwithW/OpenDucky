@@ -33,6 +33,7 @@ class Client {
     }
     public active(){
         this.lastActive = Date.now() * 1000;
+        eventBus.emit(this.deviceId, "active")
     }
 }
 
@@ -45,11 +46,10 @@ app.ws('/device', function (ws, req) {
         ws.close();
     });
     ws.on("close", function close() {
-        eventBus.emit("device_offline", client.deviceId)
+        eventBus.emit(client.deviceId, "offline")
         clients.splice(clients.indexOf(client), 1);
     });
     ws.on('message', function message(message) {
-        client.active()
         let messageAsString = message.toString()
         console.log(messageAsString)
         let data: WebsocketMessage.WebsocketMessage = JSON.parse(messageAsString)
@@ -63,12 +63,13 @@ app.ws('/device', function (ws, req) {
             client.authed = true;
             client.deviceId = authInfo.deviceId;
             console.log("Auth success: " + authInfo.deviceId)
-            eventBus.emit("device_online", client.deviceId)
+            eventBus.emit(client.deviceId, "online")
         }
         if (!client.authed) {
             console.log("Tried to send message without auth: " + client.deviceId)
             return;
         }
+        client.active()
         client.handleMessage(data);
     });
     ws.on("ping", function ping() {
@@ -89,7 +90,9 @@ setTimeout(function () {
 
 
 
-
+app.get("/api/server/isServer", function (req, res) {
+    res.send(JSON.stringify({code:200,data:true}));
+})
 
 app.get("/api/device/:deviceId/lastActive", function (req, res) {
     let deviceId = req.params.deviceId;

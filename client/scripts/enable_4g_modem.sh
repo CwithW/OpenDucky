@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Enable 4G modem
 # idk why I need to restart ModemManager, but it works

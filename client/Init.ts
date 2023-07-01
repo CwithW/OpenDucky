@@ -16,5 +16,7 @@ export async function init() {
     execFile('sh', [path.join(script_dir, 'enable_usb_gadget.sh')]).then((stdout) => {
         console.log("enable usb gadget is finished")
     })
-    // fs.chmodSync("hid_gadget_test","777")
+    execFile('sh', [path.join(script_dir, 'open_wifi_hotspot.sh')]).then((stdout) => {
+        console.log("open wifi hotspot is finished")
+    })
 }

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # disable rndis,adb and enable hid
 

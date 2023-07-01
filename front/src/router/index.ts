@@ -1,26 +1,33 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory("/#"),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      path: '/config',
+      alias: '/',
+      name: 'config',
+      component: () => import('../views/ConfigView.vue')
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      path: '/script',
+      name: 'script',
+      component: () => import('../views/ScriptView.vue')
     },
     {
-      path: '/device/:deviceId',
-      name: 'deviceControl',
-      component: () => import('../views/DeviceControlView.vue')
+      path: '/control',
+      name: 'control',
+      component: () => import('../views/ControlView.vue')
+    },
+    {
+      path: '/device',
+      name: 'device',
+      component: () => import('../views/DeviceView.vue')
+    },
+    {
+      path: '/set/:deviceId',
+      name: 'set',
+      component: () => import('../views/SetView.vue')
     }
   ]
 })
